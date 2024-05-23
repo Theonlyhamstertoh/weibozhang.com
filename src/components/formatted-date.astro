@@ -1,0 +1,44 @@
+---
+interface Props {
+    date: Date;
+}
+
+const { date } = Astro.props;
+
+export function formatDate(date: Date) {
+    const currentDate = new Date();
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = currentDate.getTime() - date.getTime();
+    const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    // Format the full date
+    const fullDate = date.toLocaleString("en-us", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    });
+
+    // Determine the correct format for the date
+    if (daysAgo < 1) {
+        return "Today";
+    } else if (daysAgo < 7) {
+        return `${fullDate} (${daysAgo}d ago)`;
+    } else if (daysAgo < 30) {
+        const weeksAgo = Math.floor(daysAgo / 7);
+        return `${fullDate} (${weeksAgo}w ago)`;
+    } else if (daysAgo < 365) {
+        const monthsAgo = Math.floor(daysAgo / 30);
+        return `${fullDate} (${monthsAgo}m ago)`;
+    } else {
+        const yearsAgo = Math.floor(daysAgo / 365);
+        return `${fullDate} (${yearsAgo}y ago)`;
+    }
+}
+---
+
+<p class="text-sm">
+    <time datetime={date.toISOString()}>
+        {formatDate(date)}
+    </time>
+</p>

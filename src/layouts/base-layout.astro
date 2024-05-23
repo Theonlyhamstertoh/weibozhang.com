@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource-variable/dm-sans";
+
+interface Props {
+    title: string;
+}
+import weiboLogo from "../static/images/weibo.svg";
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Astro description" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="max-w-3xl p-6 mx-auto">
+        <nav class="py-4">
+            <Image src={weiboLogo} alt="Weibo Blog Logo" width={150} height={150} class="mx-auto" />
+            <ul class="flex gap-3 font-light justify-center">
+                <li><a href="/">home</a></li>
+                <li><a href="/blog">blog</a></li>
+                <li><a href="/projects">projects</a></li>
+                <li><a href="/now">now</a></li>
+            </ul>
+        </nav>
+        <slot />
+    </body>
+</html>
