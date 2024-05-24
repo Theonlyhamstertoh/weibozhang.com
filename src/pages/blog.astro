@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../layouts/base-layout.astro";
+import BaseLayout from "../layouts/base-layout.astro";
 import type { BlogType } from "../content/config";
 import FormattedDate from "../components/formatted-date.astro";
 
@@ -12,7 +12,7 @@ blogs.sort((a, b) => {
 });
 ---
 
-<Layout title="Blog">
+<BaseLayout title="Blog">
     <ul class="">
         {
             blogs.map(({ data, slug }: { data: BlogType; slug: string }) => {
@@ -34,4 +34,4 @@ blogs.sort((a, b) => {
             })
         }
     </ul>
-</Layout>
+</BaseLayout>

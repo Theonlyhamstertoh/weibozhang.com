@@ -3,13 +3,13 @@ import FormattedDate from "../components/formatted-date.astro";
 import type { CollectionEntry } from "astro:content";
 
 type Props = { frontmatter: BlogType };
-import Layout from "./base-layout.astro";
+import BaseLayout from "./base-layout.astro";
 import type { BlogType } from "../content/config";
 
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={frontmatter.title}>
+<BaseLayout title={frontmatter.title}>
     <main class="prose">
         <div class="my-8">
             <h1 class="mb-0">{frontmatter.title}</h1>
@@ -18,4 +18,4 @@ const { frontmatter } = Astro.props;
 
         <slot />
     </main>
-</Layout>
+</BaseLayout>

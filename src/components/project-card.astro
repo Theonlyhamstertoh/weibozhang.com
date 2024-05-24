@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import { projectsData } from "../data/projects";
+---
+
+<div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <!-- <div class="space-y-2 pb-8 pt-6 md:space-y-5">
+        <h1
+            class="text-2xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14"
+        >
+            Projects
+        </h1>
+        <p class="text-lg leading-7 text-gray-500 dark:text-gray-400">Some of the projects that I have worked on!</p>
+    </div> -->
+    <div class="">
+        <div class="columns-2xs gap-4">
+            {
+                projectsData.map(({ href, title, date, description }) => (
+                    <article class="mb-4 break-inside-avoid-column ">
+                        <div
+                            class={` rounded-md bg-zinc-50 border border-zinc-100 border-opacity-60 dark:border-gray-700`}
+                        >
+                            <div class="p-6">
+                                <time class="text-zinc-500 font-light " datetime={date.toISOString()}>
+                                    {date.toLocaleString("en-us", {
+                                        month: "long",
+                                        year: "numeric",
+                                    })}
+                                </time>
+                                <h2 class=" text-2xl font-medium leading-8 tracking-tight">{title}</h2>
+                                <p class="mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
+                                <a href={href} target="_blank" class="">
+                                    Visit &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</div>
