@@ -1,6 +1,35 @@
 ---
-import ProjectCard from "../components/project-card.astro";
 import BaseLayout from "../layouts/base-layout.astro";
+import { Image } from "astro:assets";
+import { projectsData } from "../data/projects";
 ---
 
-<BaseLayout title="Blog"> <ProjectCard /></BaseLayout>
+<BaseLayout title="Blog">
+    <div class="divide-y mx-auto mt-3 max-w-5xl divide-gray-200 dark:divide-gray-700">
+        <div class="columns-2xs gap-4">
+            {
+                projectsData.map(({ href, title, date, description }) => (
+                    <article class="mb-4 break-inside-avoid-column ">
+                        <div
+                            class={` rounded-md bg-zinc-50 border border-zinc-100 border-opacity-60 dark:border-gray-700`}
+                        >
+                            <div class="p-6">
+                                <time class="text-zinc-500 font-light " datetime={date.toISOString()}>
+                                    {date.toLocaleString("en-us", {
+                                        month: "long",
+                                        year: "numeric",
+                                    })}
+                                </time>
+                                <h2 class=" text-2xl font-medium leading-8 tracking-tight">{title}</h2>
+                                <p class="mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
+                                <a href={href} target="_blank" class="">
+                                    Visit &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
+</BaseLayout>

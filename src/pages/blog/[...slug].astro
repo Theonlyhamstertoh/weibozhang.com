@@ -5,10 +5,12 @@ import BlogLayout from "../../layouts/blog-layout.astro";
 
 export const getStaticPaths = (async () => {
     const blogEntries = await getCollection("blog");
-    return blogEntries.map((entry) => ({
+    const result = blogEntries.map((entry) => ({
         params: { slug: entry.slug },
         props: { entry },
     }));
+    console.log("TEST", result);
+    return result;
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;

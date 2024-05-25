@@ -6,6 +6,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ["DM Sans Variable", ...defaultTheme.fontFamily.sans],
+                cal: ["CalSans", ...defaultTheme.fontFamily.sans],
             },
             typography: ({ theme }) => ({
                 DEFAULT: {

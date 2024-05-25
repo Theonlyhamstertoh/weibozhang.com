@@ -10,12 +10,14 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout title={frontmatter.title}>
-    <main class="prose">
-        <div class="my-8">
-            <h1 class="mb-0">{frontmatter.title}</h1>
-            <FormattedDate date={new Date(frontmatter.date)} />
-        </div>
+    <div class="max-w-3xl mx-auto">
+        <main class="prose">
+            <div class="my-8">
+                <h1 class="mb-0">{frontmatter.title}</h1>
+                <FormattedDate date={new Date(frontmatter.date)} />
+            </div>
 
-        <slot />
-    </main>
+            <slot />
+        </main>
+    </div>
 </BaseLayout>

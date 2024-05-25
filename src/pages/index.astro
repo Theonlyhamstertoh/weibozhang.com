@@ -1,13 +1,79 @@
 ---
+import type { ImageMetadata } from "astro";
 import BaseLayout from "../layouts/base-layout.astro";
+
+import { Image, imageConfig } from "astro:assets";
+import Navbar from "../components/navbar.astro";
+
+import { Icon } from "astro-icon/components";
+
+const imageFiles = await Astro.glob("/src/static/images/gallery/*{jpeg,jpg,png,gif}");
 ---
 
 <BaseLayout title="Home">
-    <main class="mt-8">
-        <h1 class="text-4xl font-medium text-center">HELLO, I'm Weibo : )</h1>
-        <p class="mt-2 text-zinc-600 text-center">
-            I'm rebuilding my website at the moment. This is empty for now but if you need to contact me, my email is
-            weibo zhang 50 at gmail com (so bots can't scrape this)
-        </p>
+    <div class="bg-dotted-blur -z-10"></div>
+    <main class="">
+        <div class="max-w-xl mx-auto mb-8">
+            <h1 class="text-7xl text-center font-cal font tracking-wide text-zinc-800 mb-2">Weibo Zhang</h1>
+            <p class="text-zinc-800 font-light text-sm text-center mb-4">
+                Traveler | Software Developer | Photographer
+            </p>
+
+            <p class="mt-3 text-zinc-700 leading-loose text-pretty text-center">
+                Hi, I'm Weibo. I'm a current college student studying Computer Science. In my free time, I am
+                probablydreaming of travel plans, freestyling to music, programming passion projects, journaling, and
+                being a homebody :D
+            </p>
+
+            <div class="flex gap-3 my-6 justify-center">
+                <a
+                    href="https://www.linkedin.com/in/weibozhang/"
+                    target="_blank"
+                    class="w-fit rounded-lg hover:rotate-2 bg-zinc-50 transition border border-zinc-100 p-2 px-4 flex gap-2 justify-center"
+                >
+                    <Icon class="size-6 text-[#0e76a8]" name="tabler:brand-linkedin" />
+                    LinkedIn
+                </a>
+                <a
+                    href="https://github.com/Theonlyhamstertoh"
+                    target="_blank"
+                    class="w-fit rounded-lg border bg-zinc-50 hover:-rotate-2 transition border-zinc-100 p-2 px-4 flex gap-2 justify-center"
+                >
+                    <Icon class="size-6" name="tabler:brand-github" />
+                    Github
+                </a>
+                <a
+                    href="https://open.spotify.com/user/eswggww5eu0qes3rs778hsrxj?si=8395e09dbdb34a56"
+                    target="_blank"
+                    class="w-fit rounded-lg border bg-zinc-50 hover:rotate-2 transition border-zinc-100 p-2 px-4 flex gap-2 justify-center"
+                >
+                    <Icon class="size-6 text-green-400" name="tabler:brand-spotify-filled" />
+                    Spotify
+                </a>
+            </div>
+        </div>
+
+        <div class="mx-auto columns-3xs max-w-6xl">
+            {
+                imageFiles.map((img, i) => (
+                    <Image
+                        src={img.default}
+                        width={800}
+                        alt="Travel Photos I took during my time abroad and on road trips"
+                        class={`mb-3 w-full rounded-md hover:rotate-2 transition hover:shadow-lg hover:outline outline-zinc-900 `}
+                    />
+                ))
+            }
+        </div>
     </main>
 </BaseLayout>
+
+<style>
+    @font-face {
+        font-family: "CalSans";
+        src: url("/fonts/CalSans-SemiBold.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+</style>
