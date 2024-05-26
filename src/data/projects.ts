@@ -12,6 +12,12 @@ export const projectsData = [
         date: new Date("2024-05-23"),
     },
     {
+        title: "Packtime (Design Only)",
+        description: `Schedule to meet with friends & teams`,
+        href: "https://www.figma.com/design/yp5uPcV81F9ufxPCXh7DGE/Packtime?node-id=220-1306",
+        date: new Date("2024-04-15"),
+    },
+    {
         title: "BudgetBird",
         description: "Budget Tracker App with Beautiful UI for college project",
         href: "https://budgetbird.vercel.app/",
@@ -72,7 +78,7 @@ export const projectsData = [
         date: new Date("2022-11-23"),
     },
     {
-        title: "Web Chatroom (Broken)",
+        title: "Web Chatroom",
         description: `Built a fullstack live chatroom with websockets and express`,
         href: "https://github.com/Theonlyhamstertoh/websocket-chatroom",
         date: new Date("2022-06-07"),

@@ -11,7 +11,7 @@ const { frontmatter } = Astro.props;
 
 <BaseLayout title={frontmatter.title}>
     <div class="max-w-3xl mx-auto">
-        <main class="prose">
+        <main class="prose prose-p:font-light prose-p:text-zinc-900">
             <div class="my-8">
                 <h1 class="mb-0">{frontmatter.title}</h1>
                 <FormattedDate date={new Date(frontmatter.date)} />
