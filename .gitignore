@@ -22,3 +22,25 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Vercel
+.vercel
+
+# testing
+/coverage
+
+
+# production
+/build
+*.xml
+
+# rss feed
+/public/feed.xml
+
+# search
+/public/search.json
+
+# misc
+.DS_Store
+
+
