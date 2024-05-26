@@ -1,8 +1,6 @@
 ---
-import type { ImageMetadata } from "astro";
 import BaseLayout from "../layouts/base-layout.astro";
-
-import { Image, imageConfig } from "astro:assets";
+import { Image } from "astro:assets";
 import Link from "../components/link.astro";
 const imageFiles = await Astro.glob("/src/static/images/gallery/*{jpeg,jpg,png,gif}");
 ---
