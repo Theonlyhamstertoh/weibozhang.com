@@ -26,9 +26,6 @@ pnpm-debug.log*
 # Vercel
 .vercel
 
-# testing
-/coverage
-
 
 # production
 /build
