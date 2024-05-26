@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/base-layout.astro";
+import type { BlogType } from "../content/config";
+
+const blogs = await getCollection("blog", ({ data }) => {
+    return data.published === true;
+});
+blogs.sort((a, b) => {
+    return Date.parse(b.data.date) - Date.parse(a.data.date);
+});
+---
+
+<BaseLayout title="Blog">
+    <ul class="max-w-2xl mx-auto">
+        {
+            blogs.map(({ data, slug }: { data: BlogType; slug: string }) => {
+                const fullDate: Date = new Date(data.date);
+                return (
+                    <li class="p-3 my-4 border rounded-md bg-zinc-50 border-zinc-100 ">
+                        <a href={`/blog/${slug}`} class="block visited:text-fuchsia-700">
+                            {data.title}
+                        </a>
+                        <time class="font-light text-zinc-500 " datetime={fullDate.toISOString()}>
+                            {fullDate.toLocaleString("en-us", {
+                                month: "long",
+                                day: "numeric",
+                                year: "numeric",
+                            })}
+                        </time>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</BaseLayout>
