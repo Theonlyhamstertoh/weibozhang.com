@@ -50,7 +50,7 @@ const imageFiles = await Astro.glob("/src/static/images/gallery/*{jpeg,jpg,png,g
 
         <div class="max-w-6xl mx-auto columns-3xs">
             {
-                imageFiles.map((img, i) => (
+                imageFiles.map((img) => (
                     <Image
                         src={img.default}
                         width={800}
