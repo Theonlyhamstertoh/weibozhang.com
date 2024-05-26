@@ -14,8 +14,8 @@ const { icon, label, href, class: className } = Astro.props;
 <a
     href={href}
     target="_blank"
-    class="flex items-center justify-center p-2 text-sm transition border rounded-lg w-fit hover:rotate-2 bg-zinc-50 border-zinc-100 sm:text-base sm:px-4 sm:gap-2"
+    class="flex items-center justify-center gap-1 p-2 text-sm transition border rounded-lg max-w-32 grow hover:rotate-2 bg-zinc-50 border-zinc-100 sm:text-base sm:px-4 sm:gap-2"
 >
-    <Icon class={"size-5 sm:size-6 " + className} name={icon} />
+    <Icon class={"size-5 sm:size-6 shrink-0 " + className} name={icon} />
     {label}
 </a>
