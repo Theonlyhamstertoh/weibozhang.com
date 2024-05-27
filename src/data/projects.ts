@@ -2,8 +2,8 @@ export const projectsData = [
     {
         title: "weibozhang.com v3",
         description: `The current website! Rebuilt it with Astro for simplicity`,
-        href: "#",
-        date: new Date("2024-05-23"),
+        href: "https://github.com/Theonlyhamstertoh/weibozhang.com",
+        date: new Date("2024-05-26"),
     },
     {
         title: "Bluon AI MasterMechanic",
