@@ -2,7 +2,7 @@ export const projectsData = [
     {
         title: "weibozhang.com v3",
         description: `The current website! Rebuilt it with Astro for simplicity`,
-        href: "https://www.bluon.ai",
+        href: "#",
         date: new Date("2024-05-23"),
     },
     {
