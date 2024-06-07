@@ -29,3 +29,39 @@ const { title } = Astro.props;
         <Footer />
     </body>
 </html>
+
+<style is:global>
+    code {
+        counter-reset: line;
+    }
+
+    code > [data-line]::before {
+        counter-increment: line;
+        content: counter(line);
+
+        /* Other styling */
+        display: inline-block;
+        width: 1rem;
+        margin-right: 2rem;
+        text-align: right;
+        color: gray;
+    }
+
+    code[data-line-numbers-max-digits="2"] > [data-line]::before {
+        width: 2rem;
+    }
+
+    code[data-line-numbers-max-digits="3"] > [data-line]::before {
+        width: 3rem;
+    }
+
+    [data-rehype-pretty-code-title] {
+        background-color: #212431;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        height: 60px;
+        color: #eee;
+        margin-bottom: -1.5rem;
+        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    }
+</style>
