@@ -50,10 +50,9 @@ The `.loading-bar` then applies the two keyframes above, with `expanding` runnin
 
 .loading-bar {
     height: 1.25rem;
-    width: 83.33%; /* Change to your desired loading width for each loading bar */
     transform-origin: left; /* Without this, you'll notice the `expanding` animation starts expanding from the  middle instead of shooting out from the left */
     animation: expanding 0.4s 0.7s forwards linear, moving 1s 1s infinite forwards linear;
-    border-radius: 0.125rem; /* Assuming sm is equivalent to 0.5rem */
+    border-radius: 0.125rem;
     background-image: linear-gradient(to right, #eff6ff 30%, #2563eb60 60%, #eff6ff);
     background-size: 200% auto;
     opacity: 0; /* The `expanding` animation will fade in the loading bar */
