@@ -19,6 +19,7 @@ export default defineConfig({
             syntaxHighlight: false,
             rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
             extendMarkdownConfig: true,
+            remarkPlugins,
         }),
         icon(),
     ],

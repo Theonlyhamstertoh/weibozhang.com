@@ -5,7 +5,7 @@ published: true
 description: "Snippets I learned for Postgres"
 ---
 
-## Return data_type for each column name\*\*
+## Return data_type for each column name
 
 ```sql title="postgres"
 SELECT
@@ -15,4 +15,16 @@ FROM
     information_schema.columns
 WHERE
     table_name = {table_name};
+
+-- Result
+/*
+| column_name     | data_type                   |
+| :-------------- | :-------------------------- |
+| id              | integer                     |
+| user_id         | bigint                      |
+| thread_id       | character varying           |
+| created_at      | timestamp without time zone |
+*/
 ```
+
+## Return data_type for each column name
