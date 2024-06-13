@@ -1,0 +1,11 @@
+**Return data_type for each column name**
+
+```sql
+SELECT
+    column_name,
+    data_type
+FROM
+    information_schema.columns
+WHERE
+    table_name = {table_name};
+```
