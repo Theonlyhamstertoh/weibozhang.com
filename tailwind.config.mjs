@@ -8,6 +8,15 @@ export default {
                 sans: ["DM Sans Variable", ...defaultTheme.fontFamily.sans],
                 cal: ["CalSans", ...defaultTheme.fontFamily.sans],
             },
+            keyframes: {
+                enter: {
+                    "0%": { transform: "scale(0.9)", opacity: "0" },
+                    "100%": { transform: "scale(1)", opacity: "1" },
+                },
+            },
+            animation: {
+                enter: "enter 400ms ease-out",
+            },
             typography: ({ theme }) => ({
                 DEFAULT: {
                     css: {
@@ -36,5 +45,5 @@ export default {
             }),
         },
     },
-    plugins: [require("@tailwindcss/typography")],
+    plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };
