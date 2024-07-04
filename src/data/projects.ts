@@ -66,10 +66,48 @@ export const projectsData = [
         date: new Date("2023-09-16"),
     },
     {
+        title: "Peppi Nurse",
+        description: "Website for a nurse in Orange County",
+        href: "https://peppi-nurse.vercel.app/",
+        date: new Date("2023-12-10"),
+    },
+    {
+        title: "OtterGuides",
+        description: "A way to find local tour guides while traveling",
+        href: "https://www.figma.com/design/I0RMt0COokB12PYylLH7kZ/Otter-Tour?node-id=0-1&t=wu0mMbmR0UWIfLxZ-1",
+        date: new Date("2023-06-25"),
+    },
+    {
+        title: "Professional Platinum",
+        description:
+            "Website designed and built for a local business selling cooking utensils. Made by Moonwish Studios",
+        href: "https://pro-plat.vercel.app/",
+        date: new Date("2023-05-11"),
+    },
+    {
+        title: "Vehitrak ",
+        description:
+            "Vehitrak simplifies the fleet management process from maintenance tracking to real time driver updates.",
+        href: "https://vehitrak.vercel.app/",
+        date: new Date("2023-03-28"),
+    },
+    {
+        title: "Acutex Website",
+        description: "Website designed and built for a local fabrics business. Made by Moonwish Studios",
+        href: "https://www.figma.com/design/aloulC8l7CNuddvVqux0nB/Acutex?node-id=12-1428&t=kX2glxEI3LxoM0Uf-1",
+        date: new Date("2023-03-09"),
+    },
+    {
         title: "Project Webinar (Failed to Launch)",
         description: "Monetize virtual meets for educators and influencers with ease",
         href: "https://project-webinar.vercel.app/",
         date: new Date("2023-03-04"),
+    },
+    {
+        title: "Farwest Uniforms Website",
+        description: "Website designed and built for a local apparel business. Made by Moonwish Studios",
+        href: "https://www.farwestuniforms.com/",
+        date: new Date("2023-02-23"),
     },
     {
         title: "Moonwish Studios",
