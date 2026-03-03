@@ -1,28 +1,12 @@
 ---
-// import { Image } from "astro:assets";
-// import weiboLogo from "../static/images/weibo.svg";
+
 ---
 
-<nav class="py-4">
-    <!-- <Image src={weiboLogo} alt="Weibo Blog Logo" width={150} height={150} class="mx-auto" /> -->
-    <ul class="flex justify-center gap-1 font-light">
-        <li class="nav-item">
-            <a href="/">home</a>
-        </li>
-        <li class="nav-item">
-            <a href="/blog">blog</a>
-        </li>
-        <li class="nav-item">
-            <a href="/projects">projects</a>
-        </li>
-        <li class="nav-item">
-            <a href="/now">now</a>
-        </li>
+<nav class="max-w-lg mx-auto py-4 w-fit">
+    <ul class="flex gap-4 text-sm font-light text-zinc-400">
+        <li><a href="/" class="hover:text-zinc-800 transition-colors">home</a></li>
+        <li><a href="/blog" class="hover:text-zinc-800 transition-colors">blog</a></li>
+        <li><a href="/projects" class="hover:text-zinc-800 transition-colors">projects</a></li>
+        <li><a href="/now" class="hover:text-zinc-800 transition-colors">now</a></li>
     </ul>
 </nav>
-
-<style>
-    .nav-item {
-        @apply hover:bg-zinc-50 hover:rotate-3  rounded-md hover:outline transition outline-zinc-100 py-1 px-2;
-    }
-</style>

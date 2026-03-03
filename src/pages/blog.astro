@@ -9,28 +9,61 @@ const blogs = await getCollection("blog", ({ data }) => {
 blogs.sort((a, b) => {
     return Date.parse(b.data.date) - Date.parse(a.data.date);
 });
+
+const blogsByYear = blogs.reduce(
+    (acc, blog) => {
+        const year = new Date(blog.data.date).getFullYear();
+        if (!acc[year]) acc[year] = [];
+        acc[year].push(blog);
+        return acc;
+    },
+    {} as Record<number, typeof blogs>
+);
+
+const years = Object.keys(blogsByYear).sort((a, b) => Number(b) - Number(a));
 ---
 
 <BaseLayout title="Blog | Weibo Zhang">
-    <ul class="max-w-2xl mx-auto">
+    <main class="max-w-lg mx-auto mt-6">
         {
-            blogs.map(({ data, slug }: { data: BlogType; slug: string }) => {
-                const fullDate: Date = new Date(data.date);
-                return (
-                    <li class="p-3 my-4 border rounded-md bg-zinc-50 border-zinc-100 ">
-                        <a href={`/blog/${slug}`} class="block visited:text-fuchsia-700">
-                            {data.title}
-                        </a>
-                        <time class="font-light text-zinc-500 " datetime={fullDate.toISOString()}>
-                            {fullDate.toLocaleString("en-us", {
-                                month: "long",
-                                day: "numeric",
-                                year: "numeric",
-                            })}
-                        </time>
-                    </li>
-                );
-            })
+            years.map((year) => (
+                <section class="mb-10">
+                    <h2 class="text-xs text-zinc-300 font-medium mb-3">
+                        {year}
+                    </h2>
+                    <ul>
+                        {blogsByYear[Number(year)].map(
+                            ({
+                                data,
+                                slug,
+                            }: {
+                                data: BlogType;
+                                slug: string;
+                            }) => {
+                                const d = new Date(data.date);
+                                return (
+                                    <li class="group">
+                                        <a
+                                            href={`/blog/${slug}`}
+                                            class="flex items-baseline justify-between gap-4 py-2 text-zinc-600 hover:text-zinc-900 transition-colors"
+                                        >
+                                            <span class="text-sm truncate">
+                                                {data.title}
+                                            </span>
+                                            <span class="text-xs text-zinc-400 shrink-0 tabular-nums">
+                                                {d.toLocaleString("en-us", {
+                                                    month: "short",
+                                                    day: "numeric",
+                                                })}
+                                            </span>
+                                        </a>
+                                    </li>
+                                );
+                            }
+                        )}
+                    </ul>
+                </section>
+            ))
         }
-    </ul>
+    </main>
 </BaseLayout>

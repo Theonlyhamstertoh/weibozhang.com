@@ -1,32 +1,54 @@
 ---
 import BaseLayout from "../../layouts/base-layout.astro";
 import { projectsData } from "../../data/projects";
+
+const projectsByYear = projectsData.reduce(
+    (acc, project) => {
+        const year = project.date.getFullYear();
+        if (!acc[year]) acc[year] = [];
+        acc[year].push(project);
+        return acc;
+    },
+    {} as Record<number, typeof projectsData>,
+);
+
+const years = Object.keys(projectsByYear).sort((a, b) => Number(b) - Number(a));
 ---
 
 <BaseLayout title="Projects | Weibo Zhang">
-    <div class="max-w-5xl mx-auto mt-3 divide-y divide-gray-200 dark:divide-gray-700">
-        <div class="gap-4 columns-2xs">
-            {
-                projectsData.map(({ href, title, date, description }) => (
-                    <article class="mb-4 break-inside-avoid-column ">
-                        <div class={` rounded-md bg-zinc-50 border border-zinc-100  dark:border-gray-700`}>
-                            <div class="p-6">
-                                <time class="font-light text-zinc-500 " datetime={date.toISOString()}>
-                                    {date.toLocaleString("en-us", {
-                                        month: "long",
-                                        year: "numeric",
-                                    })}
-                                </time>
-                                <h2 class="text-2xl font-medium leading-8 tracking-tight ">{title}</h2>
-                                <p class="mb-3 text-gray-500 max-w-none dark:text-gray-400">{description}</p>
-                                <a href={href} target="_blank" class="">
-                                    Visit &rarr;
+    <main class="max-w-lg mx-auto mt-6">
+        {
+            years.map((year) => (
+                <section class="mb-10">
+                    <h2 class="text-xs text-zinc-300 font-medium mb-3">{year}</h2>
+                    <ul>
+                        {projectsByYear[Number(year)].map(({ href, title, description, date }) => (
+                            <li>
+                                <a
+                                    href={href || undefined}
+                                    target={href ? "_blank" : undefined}
+                                    rel={href ? "noopener" : undefined}
+                                    class={`block py-2.5 group ${!href ? "pointer-events-none" : ""}`}
+                                >
+                                    <span class="flex items-baseline justify-between gap-4">
+                                        <span class="text-sm text-zinc-600 group-hover:text-zinc-900 transition-colors truncate">
+                                            {title}
+                                        </span>
+                                        <span class="text-xs text-zinc-400 shrink-0 tabular-nums">
+                                            {date.toLocaleString("en-us", {
+                                                month: "short",
+                                            })}
+                                        </span>
+                                    </span>
+                                    <span class="block text-xs text-zinc-400 mt-0.5 leading-relaxed">
+                                        {description}
+                                    </span>
                                 </a>
-                            </div>
-                        </div>
-                    </article>
-                ))
-            }
-        </div>
-    </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            ))
+        }
+    </main>
 </BaseLayout>

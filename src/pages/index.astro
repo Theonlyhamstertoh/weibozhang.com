@@ -1,86 +1,91 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
-import { Image } from "astro:assets";
-import Link from "../components/link.astro";
-const imageFiles = await Astro.glob("/src/static/images/gallery/*{jpeg,jpg,png,gif}");
+import { getCollection } from "astro:content";
+import type { BlogType } from "../content/config";
+
+const blogs = await getCollection("blog", ({ data }) => data.published === true);
+blogs.sort((a, b) => Date.parse(b.data.date) - Date.parse(a.data.date));
+const recentPosts = blogs.slice(0, 5);
 ---
 
-<BaseLayout title="Home | Weibo Zhang">
-    <main class="">
-        <div class="max-w-xl mx-auto">
-            <h1
-                class="mt-8 mb-2 animate-in duration-700 text-4xl tracking-wide text-center md:text-7xl font-cal font text-zinc-800"
+<BaseLayout title="Weibo Zhang">
+    <main class="max-w-lg tracking-tight mx-auto mt-10">
+        <h1 class="text-2xl font-cal text-zinc-900">Weibo Zhang</h1>
+        <p class="mt-1 text-sm font-light text-zinc-400">Thinking about creating something...</p>
+
+        <p class="mt-6 text-sm leading-relaxed text-zinc-600">
+            Hi, I'm Weibo. I'm graduating from college this semester in CS. I am not sure what I want to do yet but I
+            would like to create if I can.
+        </p>
+
+        <div class="flex gap-4 mt-4 text-sm">
+            <a
+                href="https://github.com/Theonlyhamstertoh"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 underline hover:text-zinc-800 transition-colors"
             >
-                Weibo Zhang
-            </h1>
-            <p class="mb-4 text-sm font-light text-center text-zinc-800">
-                Traveler | Software Developer | Photographer
-            </p>
+                GitHub
+            </a>
+            <a
+                href="https://www.linkedin.com/in/weibozhang/"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 underline hover:text-zinc-800 transition-colors"
+            >
+                LinkedIn
+            </a>
+            <a
+                href="https://open.spotify.com/user/eswggww5eu0qes3rs778hsrxj?si=8395e09dbdb34a56"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 underline hover:text-zinc-800 transition-colors"
+            >
+                Spotify
+            </a>
+            <a
+                href="https://discord.gg/sjNE8rPSMM"
+                target="_blank"
+                rel="noopener"
+                class="text-zinc-500 underline hover:text-zinc-800 transition-colors"
+            >
+                Discord
+            </a>
         </div>
 
-        <div
-            class="flex flex-col items-center justify-center max-w-2xl p-6 mx-auto my-8 border rounded-md h-fit border-zinc-100"
-        >
-            <p class="text-sm leading-loose text-center sm:leading-loose sm:text-base text-zinc-800 text-balance">
-                Hi, I'm Weibo. I'm a current college student studying Computer Science. In my free time, I am probably
-                dreaming of travel plans, freestyling to music, programming passion projects, journaling, and being a
-                homebody :D
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-3 my-6">
-                <Link
-                    class="text-[#0e76a8]"
-                    href="https://www.linkedin.com/in/weibozhang/"
-                    icon="tabler:brand-linkedin"
-                    label="LinkedIn"
-                />
-                <Link href="https://github.com/Theonlyhamstertoh" icon="tabler:brand-github" label="Github" />
-                <Link
-                    class="text-green-400"
-                    href="https://open.spotify.com/user/eswggww5eu0qes3rs778hsrxj?si=8395e09dbdb34a56"
-                    icon="tabler:brand-spotify-filled"
-                    label="Spotify"
-                />
-                <Link
-                    class="text-[#5865F2]"
-                    href="https://discord.gg/sjNE8rPSMM"
-                    icon="tabler:brand-discord-filled"
-                    label="Discord"
-                />
-            </div>
-        </div>
-        <div class="max-w-6xl mx-auto columns-3xs">
-            {
-                imageFiles.map((img) => (
-                    <Image
-                        src={img.default}
-                        width={800}
-                        client:load
-                        alt="Travel Photos I took during my time abroad and on road trips"
-                        class={`animate-in mb-3 w-full rounded-md hover:rotate-2 transition hover:shadow-lg hover:outline outline-zinc-900 duration-500 `}
-                    />
-                ))
-            }
-        </div>
-        <div class="mx-auto max-w-md">
-            <iframe
-                style="border-radius:12px"
-                src="https://open.spotify.com/embed/track/0EpH84Gd5z9xDavnWowfaC?utm_source=generator&theme=0"
-                width="100%"
-                height="152"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"></iframe>
-        </div>
+        <!-- Recent Writing -->
+        <section class="mt-14">
+            <h2 class="text-sm text-zinc-400 font-medium mb-3">Writing</h2>
+            <ul>
+                {
+                    recentPosts.map(({ data, slug }: { data: BlogType; slug: string }) => {
+                        const d = new Date(data.date);
+                        return (
+                            <li>
+                                <a
+                                    href={`/blog/${slug}`}
+                                    class="flex items-baseline justify-between gap-4 py-2 text-zinc-600 hover:text-zinc-900 transition-colors"
+                                >
+                                    <span class="text-sm truncate">{data.title}</span>
+                                    <span class="text-xs text-zinc-400 shrink-0 tabular-nums">
+                                        {d.toLocaleString("en-us", {
+                                            month: "short",
+                                            day: "numeric",
+                                            year: "numeric",
+                                        })}
+                                    </span>
+                                </a>
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+            <a
+                href="/blog"
+                class="inline-block mt-3 text-sm font-medium text-zinc-700 underline hover:text-zinc-600 transition-colors"
+            >
+                All posts &rarr;
+            </a>
+        </section>
     </main>
 </BaseLayout>
-
-<style>
-    @font-face {
-        font-family: "CalSans";
-        src: url("/fonts/CalSans-SemiBold.ttf") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-    }
-</style>

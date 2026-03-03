@@ -5,7 +5,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["DM Sans Variable", ...defaultTheme.fontFamily.sans],
+                sans: ["Work Sans Variable", ...defaultTheme.fontFamily.sans],
                 cal: ["CalSans", ...defaultTheme.fontFamily.sans],
             },
             keyframes: {
